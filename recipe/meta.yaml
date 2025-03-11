@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [python_impl == 'pypy']
   script:
-    - set CMAKE_GENERATOR=Ninja # [win]
+    - set CMAKE_GENERATOR=Visual Studio 16 2019 # [win]
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   missing_dso_whitelist:  # [s390x]
@@ -25,7 +25,6 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.15  # to support `CMAKE_GENERATOR`
     - make                                # [not win]
-    - ninja-base                          # [win]
   host:
     - pip
     - python
