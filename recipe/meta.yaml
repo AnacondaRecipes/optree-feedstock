@@ -1,6 +1,5 @@
 {% set name = "optree" %}
-{% set version = "0.12.1" %}
-{% set sha256 = "76a2240e7482355966a73c6c701e3d1f148420a77849c78d175d3b08bf06ff36" %}
+{% set version = "0.14.1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
 
 build:
   skip: true  # [python_impl == 'pypy']
@@ -26,7 +25,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.15  # to support `CMAKE_GENERATOR`
     - make                                # [not win]
-    - ninja                               # [win]
+    - ninja-base                          # [win]
   host:
     - pip
     - python
@@ -48,6 +47,7 @@ test:
 about:
   home: https://github.com/metaopt/optree
   summary: Optimized PyTree Utilities
+  description: Optimized PyTree Utilities.
   dev_url: https://github.com/metaopt/optree
   doc_url: https://optree.readthedocs.io
   license: Apache-2.0
