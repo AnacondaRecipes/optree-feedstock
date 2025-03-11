@@ -10,7 +10,6 @@ source:
   sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
 
 build:
-  skip: true  # [python_impl == 'pypy']
   script:
     - set CMAKE_GENERATOR=Visual Studio 16 2019 # [win]
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -23,7 +22,7 @@ requirements:
     - python                              # [build_platform != target_platform]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
-    - cmake >=3.15  # to support `CMAKE_GENERATOR`
+    - cmake >=3.18  # to support `CMAKE_GENERATOR`
     - make                                # [not win]
   host:
     - pip
