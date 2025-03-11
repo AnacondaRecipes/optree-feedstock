@@ -13,8 +13,9 @@ build:
   number: 0
   script:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  script_env:             # [win]
-    - CMAKE_GENERATOR=Visual Studio 16 2019 # [win]
+  script_env:                    # [win]
+    - CMAKE_GENERATOR_PLATFORM=  # [win]
+    - CMAKE_GENERATOR=Ninja      # [win]
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 
@@ -25,6 +26,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.18  # to support `CMAKE_GENERATOR`
     - make                                # [not win]
+    - ninja  # [win]
   host:
     - pip
     - python
