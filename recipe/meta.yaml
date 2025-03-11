@@ -10,10 +10,12 @@ source:
   sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
 
 build:
-  script:
-    - set CMAKE_GENERATOR=Visual Studio 16 2019 # [win]
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script:
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script_env:           # [win]
+    # Unset `CMAKE_GENERATOR` and let Visual Studio set to its default
+    - CMAKE_GENERATOR=  # [win]
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 
