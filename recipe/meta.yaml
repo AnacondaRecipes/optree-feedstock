@@ -15,7 +15,7 @@ build:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   script_env:           # [win]
     # Unset `CMAKE_GENERATOR_PLATFORM` and let Visual Studio set to its default
-    - set CMAKE_GENERATOR_PLATFORM=  # [win]
+    - CMAKE_GENERATOR_PLATFORM=  # [win]
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 
