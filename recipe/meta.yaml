@@ -6,11 +6,16 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
+  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
+  # Download the github source because of a missing tests/helpers.py file in the sdist
+  - url: https://github.com/metaopt/optree/archive/refs/tags/v0.14.1.tar.gz
+    sha256: 904fc4f5ca53512e65347c8f31b0dda292c4a24530de4e227e6202c94ddfcfe3
+    folder: gh
 
 build:
   number: 0
+  skip: True  # [py<38]
   script:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   script_env:             # [win]
@@ -30,7 +35,7 @@ requirements:
     - python
     - setuptools
     - wheel
-    - pybind11 2
+    - pybind11 >=2.12
   run:
     - python
     - typing-extensions >=4.5.0
@@ -38,10 +43,18 @@ requirements:
 test:
   imports:
     - optree
-  commands:
-    - pip check
+  source_files:
+    - tests
+    - gh/tests/helpers.py
   requires:
     - pip
+    - pytest
+    - pytest-xdist
+  commands:
+    - pip check
+    - cp gh/tests/helpers.py tests
+    # test_treespec_pickle_missing_registration fails with AssertionError, see https://github.com/metaopt/optree/issues/199
+    - pytest tests -v -k "not test_treespec_pickle_missing_registration"
 
 about:
   home: https://github.com/metaopt/optree
