@@ -9,7 +9,7 @@ source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: c011c6124d6dcbfceade2d7c4f836eab66ed8cf9ab12f94535b41a71dd734637
   # Download the github source because of a missing tests/helpers.py file in the sdist
-  - url: https://github.com/metaopt/optree/archive/refs/tags/v0.14.1.tar.gz
+  - url: https://github.com/metaopt/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 904fc4f5ca53512e65347c8f31b0dda292c4a24530de4e227e6202c94ddfcfe3
     folder: gh
 
