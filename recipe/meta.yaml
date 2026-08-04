@@ -1,5 +1,5 @@
 {% set name = "optree" %}
-{% set version = "0.18.0" %}
+{% set version = "0.19.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   - url: https://github.com/metaopt/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 84b7e203b6e7196df76f4e651eaa3bc6ce0f30495facf434fea850eb4b92279d
+    sha256: 6c4d57c7a5e786c4ab189c25e5ff6e3c40d90a99420eacfe52bc7aedad5c90ac
 
 build:
   number: 0
-  script_env: 
+  script_env:
     - _GLIBCXX_USE_CXX11_ABI=1
     # Unset `CMAKE_GENERATOR` and let Visual Studio set to its default
     - CMAKE_GENERATOR=  # [win]
@@ -24,16 +24,18 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.18
     - make  # [not win]
+    - {{ compiler('c') }}
   host:
     - pip
     - python
-    - wheel
     - setuptools >=77.0
     - pybind11 >=2.12
+    - cmake >=3.18
   run:
     - python
     - typing-extensions >=4.6.0  # [py<313]
     - typing-extensions >=4.12.0  # [py>=313]
+    - typing_extensions >=4.12.0  # [py>=313]
 
 test:
   source_files:
@@ -47,7 +49,6 @@ test:
     - pip
     - pytest
     - pytest-xdist
-  
 
 about:
   home: https://github.com/metaopt/optree
