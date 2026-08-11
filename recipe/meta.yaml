@@ -1,5 +1,5 @@
 {% set name = "optree" %}
-{% set version = "0.18.0" %}
+{% set version = "0.19.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/metaopt/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 84b7e203b6e7196df76f4e651eaa3bc6ce0f30495facf434fea850eb4b92279d
+    sha256: 6c4d57c7a5e786c4ab189c25e5ff6e3c40d90a99420eacfe52bc7aedad5c90ac
 
 build:
   number: 0
@@ -27,7 +27,6 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools >=77.0
     - pybind11 >=2.12
   run:
