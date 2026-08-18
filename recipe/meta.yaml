@@ -10,8 +10,8 @@ source:
     sha256: 6c4d57c7a5e786c4ab189c25e5ff6e3c40d90a99420eacfe52bc7aedad5c90ac
 
 build:
-  number: 0
-  script_env: 
+  number: 1
+  script_env:
     - _GLIBCXX_USE_CXX11_ABI=1
     # Unset `CMAKE_GENERATOR` and let Visual Studio set to its default
     - CMAKE_GENERATOR=  # [win]
