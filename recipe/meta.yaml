@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  script_env: 
+  script_env:
     - _GLIBCXX_USE_CXX11_ABI=1
     # Unset `CMAKE_GENERATOR` and let Visual Studio set to its default
     - CMAKE_GENERATOR=  # [win]
@@ -24,15 +24,18 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.18
     - make  # [not win]
+    - {{ compiler('c') }}
   host:
     - pip
     - python
     - setuptools >=77.0
     - pybind11 >=2.12
+    - cmake >=3.18
   run:
     - python
     - typing-extensions >=4.6.0  # [py<313]
     - typing-extensions >=4.12.0  # [py>=313]
+    - typing_extensions >=4.12.0  # [py>=313]
 
 test:
   source_files:
@@ -46,7 +49,6 @@ test:
     - pip
     - pytest
     - pytest-xdist
-  
 
 about:
   home: https://github.com/metaopt/optree
